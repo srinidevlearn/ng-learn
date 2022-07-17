@@ -1,0 +1,9 @@
+<div class="card" style="width: 18rem;">
+    <img src="{{profileInfo.avatar}}" class="card-img-top" alt="Profile image" *ngIf="gender === 'F'">
+    <img src="{{profileURL}}" class="card-img-top" alt="Profile image" *ngIf="gender === 'M'">
+    <div class="card-body">
+        <h5 class="card-title my-title">{{profileInfo.first_name}} {{profileInfo.last_name}}</h5>
+        <a href="mailto:{{profileInfo.email}}" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i> Email Me</a>
+    </div>
+</div>
+

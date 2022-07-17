@@ -1,0 +1,16 @@
+create Component:
+	ng g c <name>
+add html to corresponding html file
+add styles to corresponding scss/css file
+
+
+add required properties and methods to the Component Class
+
+add reqired interfaces to the coresponding properties present inside the component class
+
+if wish to add properties or methods inside html, we need to use {{ }} (interpolation).This is also known as one way data binding.
+
+angular inbuilt structural directive (*ngIf)
+
+
+
