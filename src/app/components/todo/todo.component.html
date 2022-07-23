@@ -1,0 +1,25 @@
+<div class="card mx-auto" style="width: 25rem">
+    <div class="card-header text-center">My TODO App</div>
+    <div class="card-body">
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="listItem"></textarea>
+        <!-- <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"  (change)="addData($event)"></textarea> -->
+        <button type="button" class="btn btn-outline-primary mt-2" (click)="addToList()">Add</button>
+    </div>
+    <div class="card-body">
+        <ng-container *ngFor="
+        let item of lists;
+        let index = index;
+        let isFirst = first;
+        let isLast = last
+      ">
+            <div class="d-flex shadow p-2 mb-2">
+
+                <div class="" style="max-width: 20rem; min-width: 20rem" [class.text-primary]="isFirst"
+                    [class.text-danger]="isLast">
+                    {{ item }}
+                </div>
+                <div class=""><i class="fa fa-trash" (click)="deleteItem(index)"></i></div>
+            </div>
+        </ng-container>
+    </div>
+</div>
