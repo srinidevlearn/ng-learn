@@ -1,0 +1,39 @@
+
+<div class="container">
+    <div class="card">
+        <form class="card-body" [formGroup]="inventoryForm">
+            <div class="mb-2">
+                <label class="form-label" for="name">Product Name</label>
+                <input type="text" class="form-control" id="name" formControlName="name" value="">
+            </div>
+            <div class="mb-2">
+                <label class="form-label" for="image">Product Image</label>
+                <input type="text" class="form-control" id="image" formControlName="image" value="">
+            </div>
+            <div class="mb-2">
+                <label class="form-label" for="desc">Product Description</label>
+                <textarea class="form-control" formControlName="description" id="desc"></textarea>
+                <!-- <input type="text" class="form-control" id="image" formControlName="image" value=""> -->
+            </div>
+            <div class="mb-2">
+                <label class="form-label" for="desc">Product Categories</label>
+                <select class="form-select">
+                    <option value="">--Select--</option>
+                    <option *ngFor="let category  of (categories$ | async)" [attr.selected]="category === categoryControls?.value">{{category}}</option>
+                </select>
+                <!-- <input type="text" class="form-control" id="image" formControlName="image" value=""> -->
+            </div>
+            <div class="mb-2">
+                <label class="form-label" for="manuf">Product Manufacturer</label>
+                <input type="text" class="form-control" id="manuf" formControlName="manufacturer" value="">
+            </div> <div class="mb-4">
+                <label class="form-label" for="price">Product Price</label>
+                <input type="number" class="form-control" id="price" formControlName="price" value="">
+            </div>
+            <div class="mb-2 text-center">
+
+                <button type="button" class="btn btn-primary" (click)="submit()">Submit</button>
+            </div>
+            </form>
+    </div>
+</div>
