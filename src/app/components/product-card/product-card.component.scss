@@ -1,0 +1,82 @@
+.small-width {
+    width: 45px;
+    text-align: center;
+  }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  /* Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+  
+  input:focus {
+    outline: none !important;
+  }
+  
+  .ruppeCursive {
+    font-family: "Courgette", cursive;
+  }
+  
+  .bg-violet,
+  .bg-violet:hover,
+  .bg-violet:focus {
+    border-color: #9c88ff !important;
+    background-color: #9c88ff !important;
+  }
+  
+  .shadow-violet {
+    -webkit-box-shadow: 0px 10px 16px 0px rgba(203, 190, 234, 0.75);
+    -moz-box-shadow: 0px 10px 16px 0px rgba(203, 190, 234, 0.75);
+    box-shadow: 0px 10px 16px 0px rgba(203, 190, 234, 0.75);
+  }
+  
+  .border-violet {
+    border: 1px solid rgba(203, 190, 234, 0.5);
+  }
+  
+  .badge-violet {
+    background-color: #a29bfe !important;
+    color: white;
+    font-size: 10px;
+  }
+  .bg-light-black,
+  .bg-light-black:focus,
+  .bg-light-black:hover {
+    background: #e0e0e0;
+    outline: none;
+    color: black;
+  }
+  
+  .square {
+    border: 1px solid silver;
+    padding: 2px;
+    width: 20px;
+    height: 20px;
+  }
+  .circle {
+    border: 1px solid silver;
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    border-radius: 50%;
+    background: silver;
+  }
+  .veg-border {
+    border: 1px solid green;
+  }
+  .veg {
+    border: 1px solid green;
+    background: green;
+  }
+  .nv-veg-border {
+    border: 1px solid tomato;
+  }
+  .nv-veg {
+    border: 1px solid tomato;
+    background: tomato;
+  }
+  

@@ -1,0 +1,52 @@
+<div class="card border border-violet shadow-violet mx-4" style="width: 14rem;">
+    <img src="foodData.image" class="card-img-top bg-light shadow-sm" alt="foodData.NAME" height="150" />
+    <!-- <small class="position-absolute" [ngClass]="foodData.TYPE == 'Veg'? 'foodType-veg' : 'foodType-non-veg' ">{{foodData.TYPE == 'Veg' ? 'Veg' : 'NV'}}</small> -->
+
+    <div class="card-body p-2 pt-3 pb-0">
+        <div class="d-flex justify-content-between">
+            <div class="m-0 p-0">
+                <h5 class="ps-0 ruppeCursive">foodData.NAME</h5>
+                <div class="mt-0 ruppeCursive text-capitalize" style="font-size:10px;letter-spacing:1px;">
+                    foodData.CUISINE
+                </div>
+
+            </div>
+            <div class="my-auto">
+                <!-- <div class="square" [ngClass]="foodData.TYPE == 'Veg'? 'veg-border' : 'nv-veg-border' ">
+					<div class="circle" [ngClass]="foodData.TYPE == 'Veg'? 'veg' : 'nv-veg' "></div>
+				</div> -->
+                <!-- {{foodData.TYPE == 'Veg' ? 'Veg' : 'NV'}} -->
+            </div>
+        </div>
+        <!-- <h5 class="ps-0 ruppeCursive">{{foodData.NAME}}</h5> -->
+        <!--  -->
+        <!-- <p>
+			<ng-container *ngFor="let item of foodData.AVAILABILITY">
+				<span class="badge badge-pill badge-violet me-2 px-2">{{item}}</span>
+			</ng-container>
+		</p> -->
+        <div class="d-flex flex-row justify-content-between">
+            <div>
+                <div class="text-secondary font-weight-bold">Price</div>
+                <div>
+                    <i class="fas fa-rupee-sign mt-3 text-secondary"></i><span
+                        class="font-weight-normal ms-1 text-secondary" style="font-size:20px">200000</span>
+                </div>
+            </div>
+            <div class="">
+                <div class="mb-1 text-center text-secondary font-weight-bold">Quantity</div>
+                <button type="button" class="btn-sm btn-primary border-0 p-1 px-1 rounded-0 bg-light-black">
+                    <i class="fas fa-minus text-secondary"></i>
+
+                </button>
+
+                <input type="number" readonly="readonly" class="border-0 small-width bg-transparent" step="1" min="1"
+                    max="5" value="defaultData" />
+                <button type="button" class="btn-sm btn-primary border-0 p-1 px-1 rounded-0 bg-light-black">
+                    <i class="fas fa-plus text-secondary"></i>
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>

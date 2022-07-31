@@ -5,4 +5,37 @@
 
 <!-- <app-todo></app-todo> -->
 
-<app-login></app-login>
+<!-- <app-login></app-login> -->
+
+<!-- <app-product-card></app-product-card> -->
+
+<!-- <router-outlet></router-outlet> -->
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a href="to-do">todo</a>
+                   
+                <li class="list-group-item">
+                    <a href="profile">Profile</a>
+
+                </li>
+                <li class="list-group-item">
+                    <a href="shopping">shopping</a>
+                </li>
+
+            </ul>
+        </div>
+        <div class="col-sm-9">
+                <div class="card border-0">
+                    <router-outlet></router-outlet>
+                </div>
+
+        </div>
+
+    </div>
+
+</div>
