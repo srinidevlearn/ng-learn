@@ -10,6 +10,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ApiService } from './service/api.service';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { CommonModule } from '@angular/common';
+import { HotToastModule } from '@ngneat/hot-toast';
 
 @NgModule({
   declarations: [AppComponent, TodoComponent, LoginComponent, ProductCardComponent,ProfileComponent],
@@ -19,7 +20,8 @@ import { CommonModule } from '@angular/common';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    CommonModule    
+    CommonModule,
+    HotToastModule.forRoot() 
   ],
   providers: [ApiService],
   bootstrap: [AppComponent],

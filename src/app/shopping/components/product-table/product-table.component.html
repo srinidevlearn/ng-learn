@@ -9,6 +9,8 @@
                 <th>Category</th>
                 <th>Manufacturer</th>
                 <th>Price</th>
+                <th>Action</th>
+
             </tr>
         </thead>
         <tbody>
@@ -20,8 +22,17 @@
                     <td>{{product.category}}</td>
                     <td>{{product.manufacturer}}</td>
                     <td>{{product.price}}</td>
+                    <td>
+                        <div class="d-flex">
+                            <div class="mx-2"><button type="button" class="btn btn-primary" (click)="edit(product.id)">Edit</button></div>
+                            <div class="mx-2"><button type="button" class="btn btn-danger" (click)="delete()">Delete</button></div>
+
+                        </div>
+
+                    </td>
+
                 </tr>
             </ng-container>
         </tbody>
-        </table>
+    </table>
 </div>

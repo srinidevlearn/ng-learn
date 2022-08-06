@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { ShoppingApiService } from '../../services/api.service';
 import { take } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-inventory-forms',
@@ -12,13 +13,16 @@ import { take } from 'rxjs/operators';
 export class ProductInventoryFormsComponent implements OnInit {
   inventoryForm: FormGroup;
 
-  categories$:Observable<any>  = this.api.getAllCategories();
+  categories$: Observable<any> = this.api.getAllCategories();
 
-  formSubscription!:Subscription;
+  formSubscription!: Subscription;
 
-  get categoryControls(){
+  get categoryControls() {
     return this.inventoryForm.get('category');
   }
+
+  productInfo: any = null;
+  productId: string = '';
 
   sampleData = {
     name: 'notebook',
@@ -30,30 +34,60 @@ export class ProductInventoryFormsComponent implements OnInit {
     price: 100,
   };
 
-  constructor(public fb: FormBuilder,private api:ShoppingApiService) {
+  constructor(
+    public fb: FormBuilder,
+    private api: ShoppingApiService,
+    private actRouter: ActivatedRoute,
+    private router:Router,
+  ) {
     this.inventoryForm = this.fb.group(
-       /* to create object from array */
-      Object.fromEntries( /* to create array from object */
+      /* to create object from array */
+      Object.fromEntries(
+        /* to create array from object */
         Object.entries(this.sampleData).map((i) => {
           i[1] = '';
           return i;
         })
       )
     );
+
+    this.productId = this.actRouter?.snapshot?.params['id'];
   }
 
   ngOnInit(): void {
-    this.inventoryForm.patchValue(this.sampleData)
-    this.formSubscription = this.inventoryForm.valueChanges.subscribe(d=>console.log(d))
+    this.formSubscription = this.inventoryForm.valueChanges.subscribe((d) =>
+      console.log(d)
+    );
 
+    if (this.productId) {
+      this.fetchSingleProductDetail();
+     
+    }
   }
 
-  submit(){
-    console.log(this.inventoryForm.value)
-    this.api.addNewProduct(this.inventoryForm.value).pipe(take(1)).subscribe();
+  submit() {
+    console.log(this.inventoryForm.value);
+    this.api.addNewProduct(this.inventoryForm.value).pipe(take(1)).subscribe(d=>{
+      this.router.navigateByUrl('shopping/product_inventory/view');
+    });
   }
 
-  ngOnDestroy(){
-    if(this.formSubscription) this.formSubscription.unsubscribe();
+  update(){
+    this.api.updateProduct({...this.inventoryForm.value,id:this.productId}).pipe(take(1)).subscribe(d=>{
+      this.router.navigateByUrl('shopping/product_inventory/view');
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.formSubscription) this.formSubscription.unsubscribe();
+  }
+
+  fetchSingleProductDetail() {
+    if (this.productId) {
+      this.api.getSingleProducts(this.productId).subscribe((d: any) => {
+        this.productInfo = d?.data;
+        this.inventoryForm.patchValue({ ...this.productInfo });
+      });
+    }
   }
 }

@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HotToastService } from '@ngneat/hot-toast';
 import { EMPTY } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 @Injectable({
@@ -7,7 +8,7 @@ import { catchError, map } from 'rxjs/operators';
 })
 export class ShoppingApiService {
   private url = 'http://localhost:3000/api';
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private toast: HotToastService) {}
 
   login(body: { email: string; password: string }) {
     return this.http.post(this.url + '/auth/login', body, {
@@ -30,6 +31,11 @@ export class ShoppingApiService {
       .pipe(catchError(this.handleError));
   }
 
+  updateProduct(body: any) {
+    return this.http
+      .put(this.url + '/product/update', body)
+      .pipe(catchError(this.handleError));
+  }
   getAllProducts() {
     return this.http
       .get(this.url + '/product/get', {
@@ -41,8 +47,18 @@ export class ShoppingApiService {
       );
   }
 
+
+  getSingleProducts(id:string){
+   
+    return this.http.get(this.url+'/product/get?',{
+      params: new HttpParams().set('id', id),
+    }).pipe(
+      catchError(this.handleError)
+    )
+  }
   handleError(error: any) {
     console.log(error);
+    this.toast.error('Oh no!');
     return EMPTY;
   }
 }

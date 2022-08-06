@@ -8,6 +8,8 @@ import { TempDashComponent } from './components/temp-dash/temp-dash.component';
 import { ProductInventoryFormsComponent } from './components/product-inventory-forms/product-inventory-forms.component';
 import { InventoryComponent } from './components/inventory/inventory.component';
 import { ProductTableComponent } from './components/product-table/product-table.component';
+import { ProductDescComponent } from './components/product-desc/product-desc.component';
+import { HotToastModule, HotToastService } from '@ngneat/hot-toast';
 
 
 
@@ -18,12 +20,15 @@ import { ProductTableComponent } from './components/product-table/product-table.
     TempDashComponent,
     ProductInventoryFormsComponent,
     InventoryComponent,
-    ProductTableComponent
+    ProductTableComponent,
+    ProductDescComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    ShoppingRoutingModule
-  ]
+    ShoppingRoutingModule,
+    HotToastModule.forRoot() 
+  ],
+  providers:[HotToastService]
 })
 export class ShoppingModule { }
