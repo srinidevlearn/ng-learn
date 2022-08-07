@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InventoryComponent implements OnInit {
 
+  innerRoutes = ['form','view',]
+
   constructor() { }
 
   ngOnInit(): void {

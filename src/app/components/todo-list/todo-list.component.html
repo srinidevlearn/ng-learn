@@ -1,0 +1,23 @@
+<ng-container *ngFor="
+let item of (lists | sortTodo : sortBy);
+let index = index;
+let isFirst = first;
+let isLast = last
+">
+    <div class="d-flex shadow p-2 mb-2">
+        <div class="" style="max-width: 28rem; min-width: 28rem" [class.text-primary]="isFirst"
+            [class.text-danger]="isLast" [class.text-decoration-line-through]="item?.isCompleted">
+            <h3>
+
+                {{ item.task }}
+            </h3>
+            <br>
+            <small>{{item.time | date:'dd-mm-YYYY HH:mm:ss'}}</small>
+        </div>
+        <div class="">
+            <i class="fa fa-check-circle me-3" [class.text-success]="item?.isCompleted"
+                (click)="markCompleteAction(item)"></i>
+            <i class="fa fa-trash" (click)="deleteItemAction(item)"></i>
+        </div>
+    </div>
+</ng-container>

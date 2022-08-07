@@ -7,6 +7,7 @@ import { ProductInventoryFormsComponent } from './components/product-inventory-f
 import { ProductTableComponent } from './components/product-table/product-table.component';
 import { RegisterComponent } from './components/register/register.component';
 import { TempDashComponent } from './components/temp-dash/temp-dash.component';
+import { InventoryAccessGaurd } from './services/inventory-access-gaurd.guard';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   {
     path: 'product_inventory',
     component: InventoryComponent,
+    canActivate:[InventoryAccessGaurd],
     children: [
       { path: 'form', component: ProductInventoryFormsComponent },
       { path: 'view', component: ProductTableComponent },

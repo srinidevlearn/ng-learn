@@ -11,9 +11,11 @@ import { ApiService } from './service/api.service';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { CommonModule } from '@angular/common';
 import { HotToastModule } from '@ngneat/hot-toast';
+import { SortTodoPipe } from './pipe/sort-todo.pipe';
+import { TodoListComponent } from './components/todo-list/todo-list.component';
 
 @NgModule({
-  declarations: [AppComponent, TodoComponent, LoginComponent, ProductCardComponent,ProfileComponent],
+  declarations: [AppComponent, TodoComponent, LoginComponent, ProductCardComponent,ProfileComponent, SortTodoPipe, TodoListComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

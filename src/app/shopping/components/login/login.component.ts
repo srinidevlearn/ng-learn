@@ -43,10 +43,10 @@ export class LoginComponent implements OnInit {
     this.api.login(body).subscribe({
       next:(d:any)=>{
         let {data} =  d;
-        let { userId} = data;
+        let { userId,user} = data;
         if(userId){
 
-          localStorage.setItem("userId",userId);
+          localStorage.setItem("userInfo",JSON.stringify(user));
           this.route.navigate(['shopping','dashboard'])
         }
       },

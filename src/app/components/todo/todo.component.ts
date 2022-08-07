@@ -1,46 +1,52 @@
 import { Component, OnInit } from '@angular/core';
+import { ToDoService } from 'src/app/service/to-do.service';
 
+interface ToDo {
+  task: string;
+  time: number;
+  isCompleted: boolean;
+}
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.scss'],
 })
 export class TodoComponent implements OnInit {
-  lists: string[] = []; //Array.from({length:10},(v,index)=>`Data ${index+1}`);
   listItem = '';
-
+  sortBy: 'create' | 'complete' | null = null;
   recentData = '';
 
-  constructor() {}
+  constructor(public service: ToDoService) {}
 
   ngOnInit(): void {
-    this.getStorage();
+    this.service.getStorage();
   }
 
-  // addData(e:any){
-  //   let value = e?.target?.value;
-  //   if(value){
-  //     this.recentData = value;
-  //   }
-  // }
+
 
   addToList() {
-    this.lists.unshift(this.listItem);
-    this.updateStorage(this.lists);
+    let todoData: ToDo = {
+      task: this.listItem,
+      time: Date.now(),
+      isCompleted: false,
+    };
+    this.service.addToList(todoData);
+    this.listItem = '';
+    this.sortBy = null;
   }
 
-  deleteItem(index: number) {
-    this.lists.splice(index, 1);
-    this.updateStorage(this.lists);
+  markComplete(targetItem: ToDo) {
+    this.service.markCompleteToList(targetItem);
   }
 
-  updateStorage(arr: string[]) {
-    localStorage.setItem('myTodo', JSON.stringify(arr));
+  deleteItem(targetItem: ToDo) {
+    this.service.deletItemFromList(targetItem);
   }
 
-  getStorage(): void {
-    try {
-      this.lists = JSON.parse(localStorage.getItem('myTodo') as string);
-    } catch (e) {}
+  sortByComplete() {
+    this.sortBy = 'complete';
+  }
+  sortByCreate() {
+    this.sortBy = 'create';
   }
 }

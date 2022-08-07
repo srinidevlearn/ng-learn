@@ -10,6 +10,7 @@ import { InventoryComponent } from './components/inventory/inventory.component';
 import { ProductTableComponent } from './components/product-table/product-table.component';
 import { ProductDescComponent } from './components/product-desc/product-desc.component';
 import { HotToastModule, HotToastService } from '@ngneat/hot-toast';
+import { InventoryAccessGaurd } from './services/inventory-access-gaurd.guard';
 
 
 
@@ -29,6 +30,6 @@ import { HotToastModule, HotToastService } from '@ngneat/hot-toast';
     ShoppingRoutingModule,
     HotToastModule.forRoot() 
   ],
-  providers:[HotToastService]
+  providers:[HotToastService,InventoryAccessGaurd]
 })
 export class ShoppingModule { }
