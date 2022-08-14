@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProfileComponent } from './components/profile/profile.component';
 import { TodoComponent } from './components/todo/todo.component';
 
-const routes: Routes = [
+const  routes: Routes = [
   { path: 'to-do', component: TodoComponent },
   { path: 'profile', component: ProfileComponent },
   {
@@ -13,6 +13,7 @@ const routes: Routes = [
   },
 ];
 
+export const routeLabel = routes.map(i=>i.path);
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],

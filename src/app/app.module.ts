@@ -17,6 +17,7 @@ import { HotToastModule } from '@ngneat/hot-toast';
 import { SortTodoPipe } from './pipe/sort-todo.pipe';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { TokenInterceptor } from './service/token.interceptor';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { TokenInterceptor } from './service/token.interceptor';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,

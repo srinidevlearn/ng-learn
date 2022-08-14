@@ -10,8 +10,14 @@
 <!-- <app-product-card></app-product-card> -->
 
 <!-- <router-outlet></router-outlet> -->
-<router-outlet></router-outlet>
-
+<div class="d-flex">
+    <ng-container *ngFor="let route of routeLabel">
+        <div><a [routerLink]="route" class="badge bg-primary mx-2">{{route}}</a></div>
+    </ng-container>
+</div>
+<main role="main" [@fadeAnimation]="outlet.isActivated ? outlet.activatedRoute : ''">
+    <router-outlet #outlet="outlet"></router-outlet>
+</main>
 <!-- 
 <div class="container-fluid">
     <div class="row">
