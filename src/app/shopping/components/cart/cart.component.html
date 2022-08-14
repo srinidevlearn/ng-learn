@@ -1,0 +1,46 @@
+<div class="container mt-2">
+    <ng-container *ngFor="let item of cartItems">
+
+        <div class="card  border-0 shadow mb-4" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title text-uppercase">{{item?.product?.name}}</h5>
+                    <p class="card-text pb-1 mb-1">
+                        <span class="text-muted">Product : </span>
+                        <span>{{item.product.price | currency : 'INR'}}</span>
+                    </p>
+                    <div class="card-text pb-1 mb-1 d-flex">
+                        <div class="text-muted me-2">Quantity</div>
+                        <div class="">
+                            <button type="button" class="btn-sm btn-primary border-0 p-1 px-1 rounded-0 bg-light-black" (click)="deleteItem(item)">
+                                <i class="fas fa-minus text-secondary"></i>
+            
+                            </button>
+            
+                            <input type="number" readonly="readonly" class="border-0 small-width bg-transparent" step="1" min="1"
+                                max="5" [value]="item.quantity" />
+                            <button type="button" class="btn-sm btn-primary border-0 p-1 px-1 rounded-0 bg-light-black" (click)="addToItem(item)">
+                                <i class="fas fa-plus text-secondary"></i>
+                            </button>
+            
+                        </div>
+                    </div>
+                  </div>
+               
+              </div>
+              <div class="col-md-4">
+                <img [src]="item.product.image" class="img-fluid rounded-3" [alt]="item.product.name" style="height:100%">
+              </div>
+            </div>
+          </div>
+    </ng-container>
+    <div class="card py-3  border-0 shadow mb-4" style="max-width: 540px;">
+
+            <div class="d-flex justify-content-between">
+                <div class="text-warning h3 text-capitalize ms-2">total</div>
+                <div class="me-2">{{cartItems | total | currency : 'INR'}}</div>
+
+            </div>
+        </div>
+</div>

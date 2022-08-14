@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ShoppingApiService } from 'src/app/shopping/services/api.service';
 
 @Component({
@@ -11,20 +11,12 @@ export class ProductDescComponent implements OnInit {
 
   productInfo:any = null;
   productId:string = ''
-  constructor(private actRouter:ActivatedRoute,private api:ShoppingApiService) {
+  constructor(private router:Router,private actRouter:ActivatedRoute,private api:ShoppingApiService) {
     this.productId = this.actRouter?.snapshot?.params['id'];
+    this.productInfo = this.actRouter?.snapshot?.data['product_desc']
    }
 
   ngOnInit(): void {
-    this.fetchSingleProductDetail();
-  }
-
-  fetchSingleProductDetail(){
-    if(this.productId){
-      this.api.getSingleProducts(this.productId).subscribe((d:any)=>{
-        this.productInfo = d?.data;
-      })
-    }
   }
 
 }

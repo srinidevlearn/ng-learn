@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   formData = {
     email: 'srini@gmail.com',
     password: '123SD',
+    // password:'imsrini1992'
   };
 
   loginForm!: FormGroup;
@@ -43,10 +44,9 @@ export class LoginComponent implements OnInit {
     this.api.login(body).subscribe({
       next:(d:any)=>{
         let {data} =  d;
-        let { userId,user} = data;
-        if(userId){
-
-          localStorage.setItem("userInfo",JSON.stringify(user));
+        let {token} = data;
+        if(token){
+          localStorage.setItem("my-app-token",JSON.stringify(token));
           this.route.navigate(['shopping','dashboard'])
         }
       },

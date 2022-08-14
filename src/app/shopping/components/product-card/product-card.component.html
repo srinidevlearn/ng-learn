@@ -1,0 +1,55 @@
+<div class="card border border-violet shadow-violet mx-3 my-2" style="width: 15rem;">
+    <img [src]="productDesc.image" class="card-img-top bg-light shadow-sm" alt="{{productDesc.name}}" height="150" />
+    <!-- <small class="position-absolute" [ngClass]="productDesc.TYPE == 'Veg'? 'foodType-veg' : 'foodType-non-veg' ">{{productDesc.TYPE == 'Veg' ? 'Veg' : 'NV'}}</small> -->
+
+    <div class="card-body p-2 pt-3 pb-0">
+        <div class="d-flex justify-content-between">
+            <div class="m-0 p-0">
+                <h5 class="ps-0 ruppeCursive">{{productDesc.name}}</h5>
+                <p class="mt-0 ruppeCursive text-capitalize" style="font-size:10px;letter-spacing:1px;">
+                    <span class="badge badge-pill badge-violet me-2 px-2">{{productDesc.category}}</span>
+                </p>
+                <p></p>
+
+            </div>
+            <div class="my-auto">
+                <!-- <div class="square" [ngClass]="productDesc.TYPE == 'Veg'? 'veg-border' : 'nv-veg-border' ">
+					<div class="circle" [ngClass]="productDesc.TYPE == 'Veg'? 'veg' : 'nv-veg' "></div>
+				</div> -->
+                <!-- {{productDesc.TYPE == 'Veg' ? 'Veg' : 'NV'}} -->
+            </div>
+        </div>
+        <!-- <h5 class="ps-0 ruppeCursive">{{productDesc.NAME}}</h5> -->
+        <!--  -->
+        <!-- <p>
+			<ng-container *ngFor="let item of productDesc.AVAILABILITY">
+			</ng-container>
+		</p> -->
+        <div class="d-flex flex-row justify-content-between mb-3" style="font-size: 14px;">
+            <div>
+                <div class="text-secondary fw-bold">Price</div>
+                <div>
+                    <i class="fas fa-rupee-sign mt-3 text-secondary"></i><span
+                        class="font-weight-normal ms-1 text-secondary" style="font-size:20px">{{productDesc.price}}</span>
+                </div>
+            </div>
+            <div class="align-self-center" *ngIf="defaultData === 0">
+                <button type="button" class="btn btn-primary btn-sm bg-violet"  (click)="addToItem()"><i class="fa fa-plus me-1"></i>Add Item</button>
+            </div>
+            <div class="" *ngIf="defaultData > 0">
+                <div class="mb-1 text-center text-secondary fw-bold">Quantity</div>
+                <button type="button" class="btn-sm btn-primary border-0 p-1 px-1 rounded-0 bg-light-black" (click)="deleteItem()">
+                    <i class="fas fa-minus text-secondary"></i>
+
+                </button>
+
+                <input type="number" readonly="readonly" class="border-0 small-width bg-transparent" step="1" min="1"
+                    max="5" [value]="defaultData" />
+                <button type="button" class="btn-sm btn-primary border-0 p-1 px-1 rounded-0 bg-light-black" (click)="addToItem()">
+                    <i class="fas fa-plus text-secondary"></i>
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -22,8 +22,6 @@ export class TodoComponent implements OnInit {
     this.service.getStorage();
   }
 
-
-
   addToList() {
     let todoData: ToDo = {
       task: this.listItem,

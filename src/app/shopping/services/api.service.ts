@@ -3,12 +3,17 @@ import { Injectable } from '@angular/core';
 import { HotToastService } from '@ngneat/hot-toast';
 import { EMPTY } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { JwtHandlerService } from './jwt-handler.service';
 @Injectable({
   providedIn: 'root',
 })
 export class ShoppingApiService {
   private url = 'http://localhost:3000/api';
-  constructor(private http: HttpClient,private toast: HotToastService) {}
+  constructor(
+    private http: HttpClient,
+    private toast: HotToastService,
+    private token: JwtHandlerService
+  ) {}
 
   login(body: { email: string; password: string }) {
     return this.http.post(this.url + '/auth/login', body, {
@@ -47,18 +52,34 @@ export class ShoppingApiService {
       );
   }
 
+  getUserCartItem() {
+    let userData = this.token.parsedToken();
+    console.log(userData);
+    return this.http
+      .get(this.url + '/cart/getUserCart/' + userData.userId)
+      .pipe(map((i: any) => i.data));
+  }
 
-  getSingleProducts(id:string){
-   
-    return this.http.get(this.url+'/product/get?',{
-      params: new HttpParams().set('id', id),
-    }).pipe(
-      catchError(this.handleError)
-    )
+  updateUserCartItem(cartItem: any) {
+    let userData = this.token.parsedToken();
+    return this.http.post(this.url + '/cart/addToCart', {
+      userId: userData.userId,
+      productId: cartItem.id,
+      quantity: cartItem.quantity,
+    });
+  }
+
+  getSingleProducts(id: string) {
+    return this.http
+      .get(this.url + '/product/get?', {
+        params: new HttpParams().set('id', id),
+      })
+      .pipe(catchError(this.handleError));
   }
   handleError(error: any) {
     console.log(error);
-    this.toast.error('Oh no!');
-    return EMPTY;
+    // this.toast.error('Oh no!');
+    return error;
+    // return EMPTY;
   }
 }

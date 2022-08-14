@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { ShoppingApiService } from '../../services/api.service';
@@ -33,6 +33,15 @@ export class ProductInventoryFormsComponent implements OnInit {
     manufacturer: 'self',
     price: 100,
   };
+
+  @HostListener('keypress',['$event'])
+  onEnterKeyClicked($event:any){
+
+    if($event.keyCode === 13){
+      if(this.productInfo) this.update();
+      if(!this.productInfo) this.submit();
+    }
+  }
 
   constructor(
     public fb: FormBuilder,

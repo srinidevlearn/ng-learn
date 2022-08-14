@@ -11,6 +11,11 @@ import { ProductTableComponent } from './components/product-table/product-table.
 import { ProductDescComponent } from './components/product-desc/product-desc.component';
 import { HotToastModule, HotToastService } from '@ngneat/hot-toast';
 import { InventoryAccessGaurd } from './services/inventory-access-gaurd.guard';
+import { ProductDescResolver } from './services/product-desc.resolver';
+import { ProductCardComponent } from './components/product-card/product-card.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { CartComponent } from './components/cart/cart.component';
+import { TotalPipe } from './total.pipe';
 
 
 
@@ -22,7 +27,11 @@ import { InventoryAccessGaurd } from './services/inventory-access-gaurd.guard';
     ProductInventoryFormsComponent,
     InventoryComponent,
     ProductTableComponent,
-    ProductDescComponent
+    ProductCardComponent,
+    ProductDescComponent,
+    MenuComponent,
+    CartComponent,
+    TotalPipe
   ],
   imports: [
     CommonModule,
@@ -30,6 +39,6 @@ import { InventoryAccessGaurd } from './services/inventory-access-gaurd.guard';
     ShoppingRoutingModule,
     HotToastModule.forRoot() 
   ],
-  providers:[HotToastService,InventoryAccessGaurd]
+  providers:[HotToastService,InventoryAccessGaurd,ProductDescResolver]
 })
 export class ShoppingModule { }
