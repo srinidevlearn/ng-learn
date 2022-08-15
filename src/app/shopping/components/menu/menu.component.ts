@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
-import { delay, take, takeUntil } from 'rxjs/operators';
+import { delay, switchMap, take, takeUntil, tap } from 'rxjs/operators';
 
 import { ShoppingApiService } from '../../services/api.service';
 
@@ -25,6 +25,8 @@ export class MenuComponent implements OnInit {
   loader: boolean =false;
   constructor(private api:ShoppingApiService) { 
     this.loader = true;
+    this.fetchCartItems();
+
   }
 
   productInfo = [];
@@ -32,7 +34,6 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.fetchCartItems();
     this.fetchAllProducts();
   }
 
@@ -47,6 +48,7 @@ export class MenuComponent implements OnInit {
         this.productInfo = product.map(((item:any)=>{
           if(Object.keys(this.cartItem).includes(item.id)){
             item['quantity'] = this.cartItem[item.id].quantity;
+            item.cartId = this.cartItem[item.id].id
           }else{
             item['quantity'] =0;
           }
@@ -58,7 +60,7 @@ export class MenuComponent implements OnInit {
   }
 
   fetchCartItems(){
-    this.api.getUserCartItem().pipe(takeUntil(this.destroy)).subscribe((product:any)=>{   
+    return this.api.getUserCartItem().pipe(takeUntil(this.destroy)).subscribe((product:any)=>{   
       this.cartCounter = product.length  
       product.forEach((item:any,index:any)=>{
         this.cartItem[item.product.id] = item;
@@ -67,7 +69,11 @@ export class MenuComponent implements OnInit {
   }
 
   updateCart(cartEvent:any){
-    this.api.updateUserCartItem(cartEvent).pipe(take(1)).subscribe()
+    if(cartEvent.quantity >= 1)this.api.updateUserCartItem(cartEvent).pipe(
+      tap(d=>this.fetchCartItems()),
+      take(1)
+      ).subscribe()
+    if(cartEvent.quantity === 0)this.api.deleteCartItem(cartEvent).pipe(tap(d=>this.fetchCartItems()),take(1)).subscribe()
   }
 
 }

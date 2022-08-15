@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HotToastService } from '@ngneat/hot-toast';
-import { EMPTY } from 'rxjs';
+import { EMPTY, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { JwtHandlerService } from './jwt-handler.service';
 @Injectable({
@@ -54,7 +54,6 @@ export class ShoppingApiService {
 
   getUserCartItem() {
     let userData = this.token.parsedToken();
-    console.log(userData);
     return this.http
       .get(this.url + '/cart/getUserCart/' + userData.userId)
       .pipe(map((i: any) => i.data));
@@ -67,6 +66,10 @@ export class ShoppingApiService {
       productId: cartItem.id,
       quantity: cartItem.quantity,
     });
+  }
+  deleteCartItem(cartItem: any) {
+    let userData = this.token.parsedToken();
+    return this.http.delete(this.url + '/cart/delete/'+cartItem.cartId);
   }
 
   getSingleProducts(id: string) {
