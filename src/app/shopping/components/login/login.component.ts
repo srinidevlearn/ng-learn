@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ShoppingApiService } from '../../services/api.service';
 
@@ -20,10 +20,10 @@ export class LoginComponent implements OnInit {
   constructor(
     public formBuilder: FormBuilder,
     private api: ShoppingApiService,
-    private route:Router
+    private route: Router
   ) {}
 
-  get emailControls() {
+  get emailControl() {
     return this.loginForm.get('email');
   }
 
@@ -32,9 +32,14 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loginForm = this.formBuilder.group({ email: '', password: '' });
+    this.loginForm = this.formBuilder.group({
+      email: [
+        '',
+        [Validators.required, Validators.email, Validators.minLength(5)],
+      ],
+      password: ['',[Validators.required,Validators.email,Validators.minLength(2),Validators.maxLength(10)]],
+    });
     // this.loginForm = this.formBuilder.group({ email: '', password: '' });
-
 
     this.loginForm.patchValue(this.formData);
   }
@@ -42,17 +47,17 @@ export class LoginComponent implements OnInit {
   submit() {
     let body = this.loginForm.value;
     this.api.login(body).subscribe({
-      next:(d:any)=>{
-        let {data} =  d;
-        let {token} = data;
-        if(token){
-          localStorage.setItem("my-app-token",JSON.stringify(token));
-          this.route.navigate(['shopping','dashboard'])
+      next: (d: any) => {
+        let { data } = d;
+        let { token } = data;
+        if (token) {
+          localStorage.setItem('my-app-token', JSON.stringify(token));
+          this.route.navigate(['shopping', 'dashboard']);
         }
       },
-      error:(e)=>{
-        console.log(e)
-      }
+      error: (e) => {
+        console.log(e);
+      },
     });
   }
 }
