@@ -8,7 +8,8 @@ import { JwtHandlerService } from './jwt-handler.service';
   providedIn: 'root',
 })
 export class ShoppingApiService {
-  private url = 'http://localhost:3000/api';
+  // private url = 'http://localhost:3000/api';
+  private url = '/api/'
   constructor(
     private http: HttpClient,
     private toast: HotToastService,

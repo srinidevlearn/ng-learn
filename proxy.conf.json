@@ -1,0 +1,11 @@
+{
+    "/api/":{
+        "target":"https://vercel-learn.vercel.app",
+        "changeOrigin":true,
+        "secure":true,
+        "debug":"info",
+        "pathRewrite":{
+            "/^api/":"https://vercel-learn.vercel.app/api/"
+        }
+    }
+}
