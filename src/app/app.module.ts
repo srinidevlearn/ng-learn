@@ -18,6 +18,8 @@ import { SortTodoPipe } from './pipe/sort-todo.pipe';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { TokenInterceptor } from './service/token.interceptor';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ContentProjectionComponent } from './components/content-projection/content-projection.component';
+import { ContentProjectionDemoComponent } from './components/content-projection-demo/content-projection-demo.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     ProfileComponent,
     SortTodoPipe,
     TodoListComponent,
+    ContentProjectionComponent,
+    ContentProjectionDemoComponent,
   ],
   imports: [
     BrowserModule,
